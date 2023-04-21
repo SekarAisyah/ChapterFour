@@ -50,13 +50,13 @@ class NoteAdapter(var listNote: List<DataNote>) : RecyclerView.Adapter<NoteAdapt
                 customDialogDelete.findViewById<Button>(R.id.hapus_dialog_button_hapus)
             val buttoncancel =
                 customDialogDelete.findViewById<Button>(R.id.hapus_dialog_button_cancel)
-            //cancel delete action
+
+            //action cancel delete
             buttoncancel.setOnClickListener {
                 hapusDataDialog.dismiss()
             }
 
             //delete action button
-
             buttonhapus.setOnClickListener {
                 Toast.makeText(it.context, "Note Telah Dihapus", Toast.LENGTH_SHORT).show()
                 GlobalScope.async {
@@ -81,37 +81,17 @@ class NoteAdapter(var listNote: List<DataNote>) : RecyclerView.Adapter<NoteAdapt
                             ).show()
                         }
                     }
-//                    ViewModelNote(Application()).deleteNote(listNote[position])
-//                    dbNote?.noteDao()?.deleteNote(listNote[position])
-//                    val nav = Navigation.findNavController(it)
-//                    nav.run {
-//                        navigate(R.id.homeFragment)
-//                    }
                 }
             }
             hapusDataDialog.show()
         }
 
-//            dbNote = RoomDatabaseNote.getInstance(it.context)
-//            Toast.makeText(it.context, "Note Telah Dihapus", Toast.LENGTH_SHORT).show()
-//            GlobalScope.async {
-//                ViewModelNote(Application()).deleteNote(listNote[position])
-//                dbNote?.noteDao()?.deleteNote(listNote[position])
-//                val nav = Navigation.findNavController(it)
-//                nav.run{
-//                    navigate(R.id.homeFragment)
-//                }
-//            }
         holder.binding.ivEditNote.setOnClickListener {
             dbNote = NoteDatabase.getInstance(it.context)
 
             //create custom dialog for delete process
             val customDialogEdit = LayoutInflater.from(it.context)
                 .inflate(R.layout.dialog_edit_data, null, false)
-//            val editDataDialog = AlertDialog.Builder(it.context)
-//                .setView(customDialogEdit)
-//                .create()
-
             val inputeditJudul = customDialogEdit.findViewById<EditText>(R.id.etTitleEdit)
             val inputeditContent = customDialogEdit.findViewById<EditText>(R.id.etContentEdit)
             val buttonEdit = customDialogEdit.findViewById<Button>(R.id.btnEdit)
@@ -151,13 +131,7 @@ class NoteAdapter(var listNote: List<DataNote>) : RecyclerView.Adapter<NoteAdapt
                 }
             }
         }
-//            val bundle = Bundle()
-//            bundle.putSerializable("note", listNote[position])
-//            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_fragmentEditData, bundle)
-//
-//        }
     }
-
 
     override fun getItemCount(): Int {
         return listNote.size
